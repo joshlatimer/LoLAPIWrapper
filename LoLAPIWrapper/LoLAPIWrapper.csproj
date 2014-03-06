@@ -47,6 +47,8 @@
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="LoLAPI.cs" />
     <Compile Include="Managers\GameManager.cs" />
+    <Compile Include="Managers\ChampionManager.cs" />
+    <Compile Include="Models\DTO\ChampionDTO.cs" />
     <Compile Include="Models\DTO\FellowPlayerDTO.cs" />
     <Compile Include="Models\DTO\GameDTO.cs" />
     <Compile Include="Models\DTO\GameHistoryDTO.cs" />

@@ -21,7 +21,7 @@ namespace LoLAPIWrapper
         /// <param name="name"></param>
         /// <param name="region"></param>
         /// <returns>The last 10 games the summoner has played.</returns>
-        public async Task<List<GameDTO>> GetSummonersRecentGames(Summoner summoner)
+        public async Task<List<GameDTO>> GetSummonersRecentGamesAsync(Summoner summoner)
         {
             if (summoner == null)
             {

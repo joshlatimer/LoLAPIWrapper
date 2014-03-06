@@ -21,7 +21,7 @@ namespace LoLAPIWrapper.Models.DTO
         public int level { get; set; }
         public object createDate { get; set; }
         public List<FellowPlayerDTO> fellowPlayers { get; set; }
-        public List<StatisticDTO> statistics { get; set; }
+        public StatsDTO stats { get; set; }
 
         public bool IsRanked()
         {

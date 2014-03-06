@@ -10,10 +10,10 @@ using LoLAPIWrapper.Models;
 using LoLAPIWrapper.Models.DTO;
 namespace LoLAPIWrapper
 {
-    public class SummonerManager : BaseManager
+    public class ChampionManager : BaseManager
     {
-        public SummonerManager(APIConfiguration config)
-            :base(config, "v1.3")
+        public ChampionManager(APIConfiguration config)
+            :base(config, "v1.1")
         {
         }
         /// <summary>
@@ -21,9 +21,9 @@ namespace LoLAPIWrapper
         /// <param name="name"></param>
         /// <param name="region"></param>
         /// <returns>The ID of a Summoner from their name and region.</returns>
-        public async Task<Summoner> FromNameAsync(string name, eRegion region)
+        public async Task<List<ChampionDTO>> GetAllChampionsAsync(eRegion region)
         {
-            string requestPath = string.Format("summoner/by-name/{0}", name);
+            string requestPath = "champion";
             string url = BuildURL(region, requestPath);
 
             using (HttpClient client = new HttpClient())
@@ -31,17 +31,11 @@ namespace LoLAPIWrapper
             using (HttpContent content = response.Content)
             {
                 string contentStr = await content.ReadAsStringAsync();
-                var result = await JsonConvert.DeserializeObjectAsync<Dictionary<string, SummonerDTO>>(contentStr);
-                SummonerDTO summonerDTO = result.Select(x => x.Value).FirstOrDefault();
-                
-                if (summonerDTO == null)
-                {
-                    return null;
-                }
-                //todo: cache summoners.
-                Summoner summoner = new Summoner(summonerDTO);
-                summoner.Region = region;
-                return summoner;
+                Console.WriteLine("content: " + contentStr);
+                var result = await JsonConvert.DeserializeObjectAsync<Dictionary<string, List<ChampionDTO>>>(contentStr);
+                List<ChampionDTO> champions = result.Select(x => x.Value).FirstOrDefault();
+
+                return champions;
             }
         }
     }

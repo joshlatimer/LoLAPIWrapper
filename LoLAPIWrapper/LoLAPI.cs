@@ -14,6 +14,7 @@ namespace LoLAPIWrapper
             Configuration = new APIConfiguration(apiKey);
             SummonerManager = new SummonerManager(Configuration);
             GameManager = new GameManager(Configuration);
+            ChampionManager = new ChampionManager(Configuration);
         }
 
 
@@ -23,6 +24,11 @@ namespace LoLAPIWrapper
             set;
         }
         public GameManager GameManager
+        {
+            get;
+            set;
+        }
+        public ChampionManager ChampionManager
         {
             get;
             set;
